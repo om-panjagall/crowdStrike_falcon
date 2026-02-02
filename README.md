@@ -30,7 +30,7 @@ When deploying Falcon on Kubernetes, the following resources are created:
 ### 1. Install Falcon Operator
 ```bash
 kubectl apply -f https://github.com/CrowdStrike/falcon-operator/releases/latest/download/falcon-operator.yaml
-
+```
 This creates:
 
 falcon-operator Deployment in the falcon-system namespace
@@ -45,7 +45,7 @@ kubectl create secret generic falcon-secrets \
    --from-literal=falcon-client-id="<value>" \
    --from-literal=falcon-client-secret="<value>" \
    --from-literal=falcon-cid="<value>"
-
+```
 ### 3. Deploy Falcon Node Sensor
 Create a file named falcon-node-sensor.yaml:
 
@@ -62,11 +62,11 @@ spec:
     namespace: falcon-system
   falcon_api:
     cloud_region: "eu-1"
-
+```
 Apply it:
 ```bash
 kubectl apply -f falcon-node-sensor.yaml
-
+```
 👉 This triggers the operator to create a DaemonSet named falcon-node-sensor in falcon-system.
 
 ### 4. Handle Tainted Nodes (Optional)
@@ -79,7 +79,7 @@ Example toleration:
   key: nodegroup
   operator: Equal
   value: prod
-
+```
 ### 5. Deploy Falcon Container Sensor
 Create a file named falcon-container-sensor.yaml:
 
@@ -96,11 +96,11 @@ spec:
     namespace: falcon-system
   falcon_api:
     cloud_region: "eu-1"
-
+```
 Apply it:
 ```bash
 kubectl get ds -n falcon-system
-
+```
 Expected output:
 
 falcon-node-sensor
